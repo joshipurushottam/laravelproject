@@ -36,7 +36,12 @@
                   {{-- <a href="/product/{{$info['id']}}/edit"> --}}
                   {{$info['product_name']}}
                   </td>
-                  <td>{{$info['Category']}}</td>
+                  <td>
+                        @foreach($info['allcategory'] as $cid)
+                              {{$cid['categoryId']['name'].","}}
+                        
+                        @endforeach
+                  </td>
                  <td>{{$info['product_price']}}</td>
                  <td>{{$info['discount']?$info['discount'].'%':'-'}}</td>
                  <td>{{$info['quantity']?$info['quantity']:'No'}}</td>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('product_name');
             $table->integer('product_price');
+            $table->string('photo')->nullable();
             $table->integer('discount')->nullable();
             $table->date('mfd')->nullable();
             $table->integer('quantity')->nullable();

@@ -11,13 +11,10 @@
 <input type="text" class="form-control" name="name" id="name" required placeholder="Enter Category Name">
 </div>
 <div class="mb-3">
-    <label for="price">Category Price</label>
-    <input type="number" class="form-control" name="price" id="price" required placeholder="Enter Category Price">
+    <label for="description">Category description</label>
+    <input type="text" class="form-control" name="description" id="description" required placeholder="Enter desciption">
 </div>
-<div class="mb-3">
-        <label for="discount">discount</label>
-        <input type="number" class="form-control" name="discount" id="discount" placeholder="Enter discount">
-</div>
+
   <div class="mb-3">
             <button class="btn btn-success">Save</button>
  </div>

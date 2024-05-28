@@ -17,9 +17,7 @@
            <tr>
               <th>S.No</th>
               <th>Category Name</th>
-              <th>Price</th>
-              <th>Discount</th>
-              <th>After Discount</th>
+              <th>description</th>
               <th>Edit</th>
               <th>Delete</th>
               
@@ -29,13 +27,8 @@
            @foreach ($data as $info)
            <tr>
                  <td>{{$loop->iteration}}</td>
-                 <td>
-                  {{$info['name']}}
-                  </a>
-            </td>
-                 <td>{{$info['price']}}</td>
-                 <td>{{$info['discount']?$info['discount'].'%':'-'}}</td>
-                 <td>{{$info['discount']?$info['price']-($info['price']*$info['discount']/100):$info['price']}}</td>
+                 <td>{{$info['name']}}</td>
+                 <td>{{$info['description']}}</td>
                  <td><a href="/category/{{$info['id']}}/edit" class="btn btn-primary">Edit</a></td>
                  <td>
                   <form method="post" action="/category/{{$info['id']}}">

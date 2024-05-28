@@ -14,15 +14,15 @@
   @foreach($errors->all() as $e)
   <div class="alert alert-danger">{{$e}}</div>
   @endforeach
-<form action="/product/" method="post">
+<form action="/product/" method="post" enctype="multipart/form-data">
 @csrf
 <div class="mb-3">
 <label for="product_name">Select Category:</label>
 <div class="dgrid">
   @foreach($cdata as $pinfo)
 <div>
-  <input type="checkbox" id="c{{$pinfo['id']}}" name="category_id[]" value="c{{$pinfo['id']}}">
-  <label for="c{{$pinfo['id']}}">
+  <input type="checkbox" id="{{$pinfo['id']}}" name="category_id[]" value="{{$pinfo['id']}}">
+  <label for="{{$pinfo['id']}}">
   {{$pinfo['name']}}
 </label>
 </div>
@@ -58,14 +58,11 @@
         <label for="mfd">Mfd</label>
         <input type="date" class="form-control" name="mfd" id="mfd" required placeholder="Enter Mfd">
       </div>
-
-
-
-
-
-
-
-
+     
+      <div class="mb-3">
+        <label for="photo">Photo</label>
+        <input type="file" class="form-control" name="photo" id="photo" accept="image/jpeg">
+      </div>
 
   <div class="mb-3">
             <button class="btn btn-success">Save</button>

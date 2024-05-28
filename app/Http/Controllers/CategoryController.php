@@ -40,13 +40,11 @@ class CategoryController extends Controller
     {
         //
        $request->validate([
-        'name'=> "required|min:3|max:40",
-        'price'=> "required|numeric|min:50",
+        'name'=> "required|min:3|max:40"
        ]);
         $info=[
             'name'=>$request->name,
-            'price'=>$request->price,
-            'discount'=>$request->discount
+            'description'=>$request->description
 
         ];
 
