@@ -61,7 +61,7 @@
      
       <div class="mb-3">
         <label for="photo">Photo</label>
-        <input type="file" class="form-control" name="photo" id="photo" accept="image/jpeg">
+        <input type="file" class="form-control" name="photo[]" multiple id="photo" accept="image/jpeg">
       </div>
 
   <div class="mb-3">

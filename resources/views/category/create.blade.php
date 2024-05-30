@@ -12,7 +12,7 @@
 </div>
 <div class="mb-3">
     <label for="description">Category description</label>
-    <input type="text" class="form-control" name="description" id="description" required placeholder="Enter desciption">
+    <input type="text" class="form-control" name="description" id="description" required placeholder="Enter description">
 </div>
 
   <div class="mb-3">

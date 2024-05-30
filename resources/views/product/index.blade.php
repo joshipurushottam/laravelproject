@@ -38,7 +38,7 @@
                   </td>
                   <td>
                         @foreach($info['allcategory'] as $cid)
-                              {{$cid['categoryId']['name'].","}}
+                             {{$cid['categoryId']['name']??""}}
                         
                         @endforeach
                   </td>

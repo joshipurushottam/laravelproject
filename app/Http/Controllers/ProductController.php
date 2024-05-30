@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\category;
 use App\Models\CategoryProduct;
+use App\Models\ProductMedia;
 
 class ProductController extends Controller
 {
@@ -17,7 +18,8 @@ class ProductController extends Controller
     public function index()
     {
         //
-        return view ('product.index',['data'=>product::all()]);
+        $data=Product::all();
+        return view ('product.index',compact('data'));
     }
 
     /**
@@ -44,21 +46,39 @@ class ProductController extends Controller
         $request->validate([
             // 'name'=> "required|min:3|max:40",
             // 'price'=> "required|numeric|min:50",
-            'photo'=> "required|file|image|mimes:jpeg,jpg|max:2048"
+            //'photo'=> "required|file|image|mimes:jpeg,jpg|max:2048"
            ]);
         
-           $fileName =time() . '_' . $request->photo->getClientOriginalName();
-           $request->photo->move(public_path('file'),$fileName);
             $info=[
                 'product_name'=>$request->product_name,
                 'product_price'=>$request->product_price,
                 'discount'=>$request->discount,
                 'mfd'=>$request->mfd,
                 'quantity'=>$request->quantity,
-                'photo'=>$fileName,
             ];
     
         $obj=Product::create($info);
+        foreach($request->photo as $imagee)
+        {
+            $filename=[];
+            $imagename= $imagee->getClientOriginalName();
+            $imagee->move(public_path('photos'),$imagename);
+            $filename[]= $imagename;
+        }
+        $images= json_encode($filename);
+ 
+ foreach($request->photo as $img)
+ {
+ 
+                 $isave=[
+                         'product_id'=>$obj->id,
+                         'image'=>$img
+                 ];
+        ProductMedia::create($isave);
+             }
+
+
+
         if(count($request->category_id)>0){
             foreach($request->category_id as $cid){
                 $pcinfo=[

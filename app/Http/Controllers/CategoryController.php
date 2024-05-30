@@ -88,8 +88,7 @@ class CategoryController extends Controller
     {
         //
         $category->name=$request->name;
-        $category->price=$request->price;
-        $category->discount=$request->discount;
+        $category->description=$request->description;
         $category->Save();
         return redirect('/category')->with('grt','Data Updated Successfully');
     }
