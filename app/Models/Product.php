@@ -19,4 +19,9 @@ class Product extends Model
     {
         return $this->hasOne(CategoryProduct::class,'product_id','id');
     }
+
+    function photos()
+    {
+        return $this->hasMany(ProductMedia::class,'product_id','id');
+    }
 }

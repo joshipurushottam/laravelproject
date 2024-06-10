@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::resource('/category',CategoryController::class);
 Route::resource('/product',ProductController::class);
+Route::get('/deleteimg/{id}',[ProductController::class,'imageDelete']);
 
 Auth::routes();
 

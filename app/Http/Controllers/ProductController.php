@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
+
+use App\Models\product;
 use App\Models\category;
-use App\Models\CategoryProduct;
 use App\Models\ProductMedia;
+use App\Models\CategoryProduct;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -18,8 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $data=Product::all();
-        return view ('product.index',compact('data'));
+        return view("product.index",['data'=>product::all()]);
     }
 
     /**
@@ -30,8 +30,8 @@ class ProductController extends Controller
     public function create()
     {
         //
-        $cdata=category::all(['id','name']);
-        return view('product.create',compact('cdata'));
+        $cdata=category::all(['id', 'name']);
+           return view("product.create",compact('cdata'));
     }
 
     /**
@@ -42,40 +42,40 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        //
         
-        $request->validate([
-            // 'name'=> "required|min:3|max:40",
-            // 'price'=> "required|numeric|min:50",
-            //'photo'=> "required|file|image|mimes:jpeg,jpg|max:2048"
-           ]);
+        // $request->validate([
+        //     'name'=> "required|min:3|max:40",
+        //     'price'=> "required|numeric|min:50",
+        //     'photo'=> "required|file|image|mimes:jpeg,jpg|max:2048"
+        //    ]);
         
-            $info=[
-                'product_name'=>$request->product_name,
-                'product_price'=>$request->product_price,
-                'discount'=>$request->discount,
-                'mfd'=>$request->mfd,
-                'quantity'=>$request->quantity,
-            ];
+        $info=[
+            'product_name'=>$request->product_name,
+            'product_price'=>$request->product_price,
+            'Category'=>$request->Category,
+            'mfd'=>$request->mfd,
+            'quantity'=>$request->quantity,
+            'discount'=>$request->discount,
+            'After Discount'=>$request->AfterDiscount,
+           
+        ];
     
         $obj=Product::create($info);
         foreach($request->photo as $imagee)
         {
             $filename=[];
             $imagename= $imagee->getClientOriginalName();
-            $imagee->move(public_path('photos'),$imagename);
-            $filename[]= $imagename;
-        }
-        $images= json_encode($filename);
- 
- foreach($request->photo as $img)
- {
+            //$imagee->move(public_path('photo'),$imagename);
+            //$filename[]= $imagename;
+        
  
                  $isave=[
                          'product_id'=>$obj->id,
-                         'image'=>$img
+                         'image'=>$imagename,
                  ];
         ProductMedia::create($isave);
-             }
+     }     
 
 
 
@@ -101,6 +101,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+        
     }
 
     /**
@@ -112,7 +113,9 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
-        return view('product.edit',['info'=>$product]);
+       $category=array_column( $product->allcategory->toArray(),'category_id');
+       
+        return view('product.edit',['info'=>$product,'cdata'=>category::all(['id','name']),'category'=>$category]);
     }
 
     /**
@@ -144,7 +147,15 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
-        $product->delete();
+        $product->find($product->{'id'})->delete();
         return redirect('/product')->with('grt','Data Deleted Successfully');
+    }
+    
+    public function imageDelete($id)
+    {
+        $img= productmedia::find($id);
+        unlink("photos/".$img['image']);
+        $img->delete();
+
     }
 }

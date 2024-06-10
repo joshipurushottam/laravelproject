@@ -16,6 +16,7 @@
   @endforeach
 <form action="/product/" method="post" enctype="multipart/form-data">
 @csrf
+
 <div class="mb-3">
 <label for="product_name">Select Category:</label>
 <div class="dgrid">
