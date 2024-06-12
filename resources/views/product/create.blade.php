@@ -7,6 +7,7 @@
     display: grid;
     grid-template-columns:  1fr 1fr 1fr 1fr;la
   }
+  
 </style>
 
 
@@ -17,7 +18,7 @@
 <form action="/product/" method="post" enctype="multipart/form-data">
 @csrf
 
-<div class="mb-3">
+<div class="mb-3" id="div">
 <label for="product_name">Select Category:</label>
 <div class="dgrid">
   @foreach($cdata as $pinfo)

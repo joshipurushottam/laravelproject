@@ -1,6 +1,6 @@
 @extends('layouts.my')
 @section('content')
-    
+
 
 <div class="container">
     @if($gt=Session::get('grt'))

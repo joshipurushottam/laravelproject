@@ -76,7 +76,7 @@
             <div title="Click X for delete this image" id="photo_{{$img['id']}}">
               <img src="/photos/{{$img['image']}}" height="100">
 
-              <span onclick="delme({{$img['id']}})" style='font-size:30px; cursor:pointer; color:red;'>&#10006;
+              <span onclick="delme({{$img['id']}})" style="font-size:30px; cursor:pointer; color:red;">&#10006;
 
               </span>
               </div>

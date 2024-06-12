@@ -4,10 +4,16 @@
   @foreach($errors->all() as $e)
   <div class="alert alert-danger">{{$e}}</div>
   @endforeach
+  <style>
+      div{
+        background-color: blue;
+      }
+
+  </style>
 <form action="/category/" method="post">
 @csrf
-<div class="mb-3">
-<label for="name">Category Name</label>
+<div class="mb-3" id="div">
+<label for="name" style="color:whi">Category Name</label>
 <input type="text" class="form-control" name="name" id="name" required placeholder="Enter Category Name">
 </div>
 <div class="mb-3">

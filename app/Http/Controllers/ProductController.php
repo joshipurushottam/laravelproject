@@ -66,7 +66,7 @@ class ProductController extends Controller
         {
             $filename=[];
             $imagename= $imagee->getClientOriginalName();
-            //$imagee->move(public_path('photo'),$imagename);
+            $imagee->move(public_path('photos'),$imagename);
             //$filename[]= $imagename;
         
  
@@ -137,6 +137,8 @@ class ProductController extends Controller
         return redirect('/product')->with('grt','Data Updated Successfully');
 
     }
+
+    
 
     /**
      * Remove the specified resource from storage.
